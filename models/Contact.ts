@@ -5,7 +5,7 @@ export interface ContactData {
   email: string
 }
 
-export interface ContactWithContactData {
+export interface ContactWithOccupation {
   id: number
   occupationName: string
   contactName: string
