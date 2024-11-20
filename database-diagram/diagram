@@ -1,0 +1,14 @@
+Table occupations {
+  id integer [primary key]
+  name integer
+  }
+
+  Table contacts {
+    id interger [primary key]
+    occupation_id interger
+    name text
+    phone text
+    email number
+  }
+
+  Ref: occupations.id < contacts.occupation_id
