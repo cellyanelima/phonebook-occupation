@@ -5,6 +5,14 @@ export interface ContactData {
   email: string
 }
 
+export interface ContactWithOccupation {
+  id: number
+  occupationName: string
+  contactName: string
+  phone: string
+  email: string
+}
+
 export interface Contact extends ContactData {
   id: number
 }
