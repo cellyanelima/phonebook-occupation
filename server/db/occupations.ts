@@ -4,5 +4,6 @@ import { Occupation } from '../../models/Occupation.ts'
 export async function getAllOccupations(
   db = connection,
 ): Promise<Occupation[]> {
-  return db('occupations').select('*')
+  const occupations = await db('occupations').select('*')
+  return occupations as Occupation[]
 }
