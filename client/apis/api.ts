@@ -7,7 +7,9 @@ export function getContacts(): Promise<string[]> {
     return res.body.contacts
   })
 }
-export function getOccupations(): Promise <string []>{
-  const res = await request.get(rootUrl + '/occupations')
-  return res.body.occupations
+
+export function getOccupations(): Promise<string[]> {
+  return request.get(rootUrl + '/occupations').then((res) => {
+    return res.body.occupations
+  })
 }
