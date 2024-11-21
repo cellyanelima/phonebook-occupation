@@ -6,7 +6,7 @@ const router = Router()
 
 router.get('/', async (req, res) => {
   try {
-    const contacts = await db.getAllContacts()
+    const contacts = await db.getAllContactsWithOccupation()
     res.json(contacts)
   } catch (error) {
     console.log(error)
