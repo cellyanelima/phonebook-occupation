@@ -1,13 +1,22 @@
-/* eslint-disable react/jsx-key */
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-} from 'react-router-dom'
-import App from './components/App'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createRoutesFromElements, Route } from 'react-router-dom'
+import Layout from './components/Layout.tsx'
+import ContactsList from './components/ContactsList.tsx'
 
-const router = createBrowserRouter(
-  createRoutesFromElements([<Route path="/" element={<App />} />])
+
+
+const routes = createRoutesFromElements(
+<Route path="/" element={<Layout />}>
+  <Route index element={<ContactsList />} />
+  <Route path="/contacts" element={<ContactsList />} />
+  
+
+</Route>
+
 )
+  
+const router = createBrowserRouter(routes)
 
-export default router
+export default function App() {
+  return <RouterProvider router={router} />
+}
