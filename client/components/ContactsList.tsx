@@ -22,9 +22,9 @@ export default function ContactsList() {
           <li key={contact.id} className="card">
             
             <div className="occupation">
-              <span className="title">{contact.contactName}</span>
-              <p className="data">{contact.phone}</p>- {contact.email} -
-              {contact.occupationName}
+              <span className="title">Name: {contact.contactName}</span>
+              <p className="data">Mobile: {contact.phone}</p> Email: {contact.email} 
+              <p>Occupation: {contact.occupationName}</p>
               <Link to={`/contact/ edit location/edit`}></Link>
             </div>
           </li>
