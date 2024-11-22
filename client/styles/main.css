@@ -127,7 +127,7 @@ p {
 }
 
 .occupation,
-.event {
+.contact {
   display: flex;
   flex-direction: column;
 }
@@ -145,13 +145,14 @@ p {
   border-top: 3px solid #afc2d5;
   padding-top: 10px;
 }
-
+/*
 .time-location {
   margin-top: 15px;
   font-size: 0.875rem;
 }
+*/
 
-.event-description {
+.contact-description {
   margin-top: 15px;
   margin-bottom: 15px;
 }
