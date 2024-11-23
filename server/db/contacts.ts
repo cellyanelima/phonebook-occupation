@@ -50,3 +50,9 @@ export async function byId(id: number, db = connection) {
     .first()
   return data as ContactWithOccupation
 }
+
+export async function deleteContact(id: number, db = connection): Promise<void> {
+  await db('contacts')
+  .where({ id })
+  .del()
+}

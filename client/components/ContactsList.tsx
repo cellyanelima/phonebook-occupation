@@ -13,6 +13,15 @@ export default function ContactsList() {
   if (!data || data.length === 0) {
     return <div>No contacts found.</div>
   }
+
+  const handleDeleteContact = async (id: number) => {
+  try {
+    await fetch(`/api/v1/contacts/${id}`, { method: 'DELETE' })
+    window.location.reload()
+  } catch (error) {
+    console.log(error)
+  }
+  }
   
   return (
     <>
@@ -26,6 +35,7 @@ export default function ContactsList() {
               <p className="data">Mobile: {contact.phone}</p> Email: {contact.email} 
               <p>Occupation: {contact.occupationName}</p>
               <Link to={`/contact/ edit location/edit`}></Link>
+              <button onClick={() => handleDeleteContact(contact.id)}>Delete Contact</button>
             </div>
           </li>
         ))}
