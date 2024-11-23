@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import useContacts from '../hooks/use-contacts'
+import { deleteContact } from '../../server/db/contacts'
 
 //import LoadingIndicator from './LoadingIndicator.tsx'
 
@@ -12,6 +13,12 @@ export default function ContactsList() {
   console.log(data)
   if (!data || data.length === 0) {
     return <div>No contacts found.</div>
+  }
+
+  const handleDeleteContact = async (id: number) => {
+    await deleteContact(id)
+    // You may want to refresh the contacts list after deletion
+    window.location.reload()
   }
   
   return (
@@ -26,6 +33,7 @@ export default function ContactsList() {
               <p className="data">{contact.phone}</p>- {contact.email} -
               {contact.occupationName}
               <Link to={`/contact/ edit location/edit`}></Link>
+              <button onClick={() => handleDeleteContact(contact.id)}>Delete Contact</button>
             </div>
           </li>
         ))}
