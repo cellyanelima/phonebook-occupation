@@ -48,14 +48,15 @@ router.patch('/:id', async (req, res, next) => {
 })
 
 //delete
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', async (req, res) => {
   try {
-    const id = Number(req.params.id)
-    await db.deleteContact(id)
-    res.sendStatus(204)
-  } catch (e) {
-    next(e)
+    const id = Number(req.params.id);
+    await db.deleteContact(id);
+    res.status(204).send();
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Something went wrong' });
   }
-})
+});
 
 export default router
