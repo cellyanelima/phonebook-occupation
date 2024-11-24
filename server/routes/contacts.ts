@@ -66,4 +66,15 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+router.delete('/:id', async (req, res) => {
+  try {
+    const id = Number(req.params.id)
+    await db.deleteContact(id)
+    res.status(204).send()
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: 'Something went wrong' })
+  }
+})
+
 export default router

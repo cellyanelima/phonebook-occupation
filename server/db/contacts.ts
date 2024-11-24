@@ -46,7 +46,10 @@ export async function updateContact(
   })
 }
 
-export async function addNewContact(contact: ContactData): Promise<number> {
+export async function addNewContact(
+  contact: ContactData,
+  db = connection,
+): Promise<number> {
   const { occupationId, name, phone, email } = contact
   const newContact = {
     occupation_Id: occupationId,
@@ -54,5 +57,12 @@ export async function addNewContact(contact: ContactData): Promise<number> {
     phone,
     email,
   }
-  return await connection('contacts').insert(newContact)
+  return await db('contacts').insert(newContact)
+}
+
+export async function deleteContact(
+  id: number,
+  db = connection,
+): Promise<void> {
+  await db('contacts').where({ id }).del()
 }

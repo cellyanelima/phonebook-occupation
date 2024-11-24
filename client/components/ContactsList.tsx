@@ -13,6 +13,15 @@ export default function ContactsList() {
     return <div>No contacts found.</div>
   }
 
+  const handleDeleteContact = async (id: number) => {
+    try {
+      await fetch(`/api/v1/contacts/${id}`, { method: 'DELETE' })
+      window.location.reload()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <>
       <ContactsNav />
@@ -36,6 +45,9 @@ export default function ContactsList() {
               <Link to={`/contacts/${contact.id}/edit`}>
                 <strong>Edit</strong>
               </Link>
+              <button onClick={() => handleDeleteContact(contact.id)}>
+                Delete Contact
+              </button>
             </div>
           </li>
         ))}
