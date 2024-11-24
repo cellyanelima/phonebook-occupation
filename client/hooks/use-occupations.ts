@@ -1,13 +1,16 @@
-/*
+import { useQuery } from '@tanstack/react-query'
+import request from 'superagent'
+import type { Occupation } from '../../models/Occupation.ts'
 
-export function useOccupations() {
-  
+export default function useOccupations() {
   return useQuery({
-
-    queryKey: ['occupations'],
+    queryKey: ['occupation'],
     queryFn: async () => {
       const res = await request.get('/api/v1/occupations')
-      return res.body.occupations as Array<Occupation>
+      if (res.ok) {
+        return res.body as Occupation[]
+      }
+      throw new Error(res.text)
     },
   })
-}*/
+}

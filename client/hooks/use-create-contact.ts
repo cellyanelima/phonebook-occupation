@@ -1,5 +1,4 @@
-{
-  /*import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import request from 'superagent'
 import { ContactData } from '../../models/Contact.js'
 
@@ -13,6 +12,4 @@ export default function useCreateContact() {
       queryClient.invalidateQueries({ queryKey: ['contact'] })
     },
   })
-}
-*/
 }

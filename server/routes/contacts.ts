@@ -47,4 +47,23 @@ router.patch('/:id', async (req, res, next) => {
   }
 })
 
+router.post('/', async (req, res, next) => {
+  try {
+    const occupationId = Number(req.body.occupationId)
+    const { name, phone, email } = req.body
+
+    const id = await db.addNewContact({
+      occupationId: Number(occupationId),
+      name,
+      phone,
+      email,
+    })
+    const url = `/api/v1/contacts/${id}`
+    res.setHeader('Location', url)
+    res.status(201).json({ location: url })
+  } catch (e) {
+    next(e)
+  }
+})
+
 export default router

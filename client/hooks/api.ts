@@ -1,5 +1,7 @@
-//export { default as useCreateContact } from './use-create-contact.ts'
+export { default as useCreateContact } from './use-create-contact.ts'
+export { default as useEditContact } from '../hooks/use-edit-contact.ts'
+export { default as useContactData } from '../hooks/use-contact-data.ts'
 export { default as useContacts } from './use-contacts.ts'
-//export {default as }from '../hooks/use-create-contact.ts'
-
-// HERE NEEDS TO PUT ALL HOOKS
+export { default as useEditOccupationData } from './use-edit-occupation.ts'
+export { default as useOccupationData } from './use-occupation-data.ts'
+export { default as useOccupations } from '../hooks/use-occupations.ts'

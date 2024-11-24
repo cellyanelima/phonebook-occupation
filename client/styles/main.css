@@ -145,14 +145,13 @@ p {
   border-top: 3px solid #afc2d5;
   padding-top: 10px;
 }
-/*
+
 .time-location {
   margin-top: 15px;
   font-size: 0.875rem;
 }
-*/
 
-.contact-description {
+.event-description {
   margin-top: 15px;
   margin-bottom: 15px;
 }

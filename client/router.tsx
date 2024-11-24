@@ -1,20 +1,16 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import { createRoutesFromElements, Route } from 'react-router-dom'
 import Layout from './components/Layout.tsx'
 import ContactsList from './components/ContactsList.tsx'
-//import EditOccupation from './components/EditOccupation.tsx'
-//import EditEvent from './components/EditContact.tsx'
-//import NewContact from './components/NewContact.tsx'
-//import NewOccupation from './components/NewOccupation.tsx'
+import EditContact from './components/EditContact.tsx'
+import NewContact from './components/NewContact.tsx'
 
 const routes = createRoutesFromElements(
   <Route path="/" element={<Layout />}>
-    <Route index element={<ContactsList />} />
+    <Route index element={<Navigate to="/contacts" replace />} />
     <Route path="/contacts" element={<ContactsList />} />
-    {/*<Route path="/contacts/:id/edit" element={<EditEvent />} />
-    <Route path="/contacts/add/new" element={<NewContact />} />
-    <Route path="/occupations/:id/edit" element={<EditOccupation />} />
-    <Route path="/occupations/add/new" element={<NewOccupation />} />*/}
+    <Route path="/contacts/new" element={<NewContact />} />
+    <Route path="/contacts/:id/edit" element={<EditContact />} />
   </Route>,
 )
 

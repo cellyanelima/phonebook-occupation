@@ -1,55 +1,46 @@
-{
-  /*import { useNavigate, useParams } from 'react-router-dom'
-import { EventData } from '../../models/Event'
-import EditEventForm from './EditEventForm'
-import LineupNav from './LineupNav'
-
-import { useDeleteEvent, useEditEvent, useEventData } from '../hooks/api.ts'
+import { useNavigate, useParams } from 'react-router-dom'
+import { ContactData } from '../../models/Contact.ts'
+import { useEditContact, useContactData } from '../hooks/api.ts'
+import EditContactForm from './EditContactForm.tsx'
 import LoadingIndicator from './LoadingIndicator.tsx'
+import MainNav from './MainNav.tsx'
 
-export default function EditEvent() {
+export default function EditContact() {
   const params = useParams()
   const id = Number(params.id)
-  const event = useEventData(id)
-  const editEvent = useEditEvent(id)
-  const deleteEvent = useDeleteEvent(id)
+  const contact = useContactData(id)
+  const editContact = useEditContact(id)
   const navigate = useNavigate()
 
-  const handleSubmit = async (formData: EventData) => {
-    editEvent.mutateAsync({ id, ...formData })
+  const handleSubmit = async (data: ContactData) => {
+    try {
+      await editContact.mutateAsync({ id, ...data })
+      console.log('Contact updated successfully')
+      navigate('/contacts/')
+    } catch (error) {
+      console.error('Error updating contact:', error)
+    }
   }
 
-  const handleDelete = async (evt: React.FormEvent) => {
-    evt.preventDefault()
-    deleteEvent.mutate()
-    navigate(`/schedule/friday`)
-  }
-
-  if (event.isPending) {
+  if (contact.isLoading) {
     return <LoadingIndicator />
   }
 
-  if (event.isError || !event.data) {
-    return 'Failed to load event data'
+  if (contact.isError || !contact.data) {
+    return <p>Failed to load contact data. Please try again later.</p>
   }
 
   return (
     <>
-      <LineupNav />
+      <MainNav />
       <h2>
-        edit event: <span className="data">{event.data.name}</span>
+        Edit Contact: <span className="data">{contact.data.name}</span>
       </h2>
-      <EditEventForm
-        {...event.data}
-        submitLabel="Update event"
+      <EditContactForm
+        {...contact.data}
+        submitLabel="Update Contact"
         onSubmit={handleSubmit}
       />
-      <form onSubmit={handleDelete} className="form">
-        <div />
-        <button className="delete">Delete event</button>
-      </form>
     </>
   )
-}
-*/
 }

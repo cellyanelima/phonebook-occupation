@@ -1,33 +1,34 @@
-{
-  /*import { useNavigate } from 'react-router-dom'
-import EditEventForm from './EditEventForm.tsx'
-import { EventData } from '../../models/Event.ts'
-//import LineupNav from './LineupNav.tsx'
-import { useCreateEvent } from '../hooks/api.ts'
+import { useNavigate } from 'react-router-dom'
+import EditContactForm from './EditContactForm.tsx'
+import { ContactData } from '../../models/Contact.ts'
+import { useCreateContact } from '../hooks/api.ts'
+import MainNav from './MainNav.tsx'
 
-export default function NewEvent() {
-  const createEvent = useCreateEvent()
+export default function NewContact() {
+  const createContact = useCreateContact()
   const navigate = useNavigate()
-  const handleSubmit = async (data: EventData) => {
-    await createEvent.mutateAsync(data)
-    navigate(`/schedule/${data.day}`)
+
+  const handleSubmit = async (data: ContactData) => {
+    try {
+      await createContact.mutateAsync(data)
+      navigate('/contacts')
+    } catch (error) {
+      console.error('Error creating contact:', error)
+    }
   }
 
   return (
     <>
-      <LineupNav />
-      <h2>New Event</h2>
-      <EditEventForm
-        submitLabel="Create event"
+      <MainNav />
+      <h2>New Contact</h2>
+      <EditContactForm
+        submitLabel="Create Contact"
         name=""
-        day="friday"
-        time=""
-        locationId={1}
-        description=""
+        occupationId={0}
+        phone=""
+        email=""
         onSubmit={handleSubmit}
       />
     </>
   )
-}
-*/
 }

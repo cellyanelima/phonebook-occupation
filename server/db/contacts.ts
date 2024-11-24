@@ -1,5 +1,9 @@
 import connection from './connection.ts'
-import { Contact, ContactWithOccupation } from '../../models/Contact.ts'
+import {
+  Contact,
+  ContactWithOccupation,
+  ContactData,
+} from '../../models/Contact.ts'
 
 export async function getAllContactsWithOccupation(
   db = connection,
@@ -42,11 +46,13 @@ export async function updateContact(
   })
 }
 
-export async function byId(id: number, db = connection) {
-  const data = await db('contacts')
-    .join('occupations', 'contacts.occupation_id', 'occupations.id')
-    .select('contacts.id', 'occupations.name as occupationName')
-    .where('contacts.id', id)
-    .first()
-  return data as ContactWithOccupation
+export async function addNewContact(contact: ContactData): Promise<number> {
+  const { occupationId, name, phone, email } = contact
+  const newContact = {
+    occupation_Id: occupationId,
+    name,
+    phone,
+    email,
+  }
+  return await connection('contacts').insert(newContact)
 }

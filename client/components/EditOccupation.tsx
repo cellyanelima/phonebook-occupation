@@ -1,23 +1,18 @@
 {
-  /*import { useParams } from 'react-router-dom'
+  /*
+// TODO
+import { useParams } from 'react-router-dom'
+import EditOccupationForm from './EditOccupationForm.tsx'
+import { useOccupationData } from '../hooks/api.ts'
 
-import LocationsNav from './LocationsNav.tsx'
-import EditLocationForm from './EditLocationForm.tsx'
-import { useLocationData } from '../hooks/api.ts'
-import LoadingIndicator from './LoadingIndicator.tsx'
-
-export default function EditLocation() {
+export default function EditOccupation() {
   const params = useParams()
   const id = Number(params.id)
 
-  const { data, isPending, isError } = useLocationData(id)
+  const { data, isPending, isError } = useOccupationData(id)
 
   if (isPending) {
-    return (
-      <main aria-live="polite" aria-busy={true}>
-        <LoadingIndicator />
-      </main>
-    )
+    return <main aria-live="polite" aria-busy={true}></main>
   }
 
   if (isError || !data) {
@@ -30,15 +25,10 @@ export default function EditLocation() {
 
   return (
     <main aria-live="polite" aria-busy={false}>
-      <LocationsNav />
       <h2>
-        edit location: <span className="data">{data.name}</span>
+        Edit occupation: <span className="data">{data.name}</span>
       </h2>
-      <EditLocationForm
-        name={data.name}
-        description={data.description}
-        id={id}
-      />
+      <EditOccupationForm name={data.name} description={data.name} id={id} />
     </main>
   )
 }

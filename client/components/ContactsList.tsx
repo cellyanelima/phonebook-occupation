@@ -1,31 +1,41 @@
 import { Link } from 'react-router-dom'
-import useContacts from '../hooks/use-contacts'
-
-//import LoadingIndicator from './LoadingIndicator.tsx'
+import useContacts from '../hooks/use-contacts.ts'
+import LoadingIndicator from './LoadingIndicator.tsx'
+import ContactsNav from './ContactsNav.tsx'
 
 export default function ContactsList() {
   const { data, isLoading, error } = useContacts()
 
-  if (isLoading) return <div>Loading...</div>
+  if (isLoading) return <LoadingIndicator />
   if (error) return <div>Error: {error.message}</div>
 
-  console.log(data)
   if (!data || data.length === 0) {
     return <div>No contacts found.</div>
   }
-  
+
   return (
     <>
-      <h2>Contacts:</h2>
+      <ContactsNav />
+      <h2>Contacts</h2>
       <ul className="cards">
         {data.map((contact) => (
           <li key={contact.id} className="card">
-            
-            <div className="occupation">
-              <span className="title">Name: {contact.contactName}</span>
-              <p className="data">Mobile: {contact.phone}</p> Email: {contact.email} 
-              <p>Occupation: {contact.occupationName}</p>
-              <Link to={`/contact/ edit location/edit`}></Link>
+            <div className="contact">
+              <p className="data">
+                <strong>Name:</strong> {contact.contactName}
+              </p>
+              <p className="data">
+                <strong>Mobile:</strong> {contact.phone}
+              </p>
+              <p className="data">
+                <strong>Email:</strong> {contact.email}
+              </p>
+              <p className="data">
+                <strong>Occupation:</strong> {contact.occupationName}
+              </p>
+              <Link to={`/contacts/${contact.id}/edit`}>
+                <strong>Edit</strong>
+              </Link>
             </div>
           </li>
         ))}

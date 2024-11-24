@@ -1,9 +1,6 @@
-import {useQuery} from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import request from 'superagent'
-import { ContactWithOccupation } from '../../models/Contact'
-//import { Occupation } from '../../models/Occupation'
-
-
+import { ContactWithOccupation } from '../../models/Contact.ts'
 
 export default function useContacts() {
   return useQuery<ContactWithOccupation[]>({
@@ -17,4 +14,3 @@ export default function useContacts() {
     },
   })
 }
-
