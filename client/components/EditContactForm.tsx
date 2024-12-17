@@ -104,7 +104,9 @@ export default function EditContactForm({
           ))}
         </select>
       </div>
-      <button type="submit">{submitLabel}</button>
+      <button className="button" type="submit">
+        {submitLabel}
+      </button>
     </form>
   )
 }

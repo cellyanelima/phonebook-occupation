@@ -4,12 +4,14 @@ import { useEditContact, useContactData } from '../hooks/api.ts'
 import EditContactForm from './EditContactForm.tsx'
 import LoadingIndicator from './LoadingIndicator.tsx'
 import MainNav from './MainNav.tsx'
+import useDeleteContact from '../hooks/use-delete-contact.ts'
 
 export default function EditContact() {
   const params = useParams()
   const id = Number(params.id)
   const contact = useContactData(id)
   const editContact = useEditContact(id)
+  const deleteContact = useDeleteContact(id)
   const navigate = useNavigate()
 
   const handleSubmit = async (data: ContactData) => {
@@ -20,6 +22,12 @@ export default function EditContact() {
     } catch (error) {
       console.error('Error updating contact:', error)
     }
+  }
+
+  const handleDelete = async (evt: React.FormEvent) => {
+    evt.preventDefault()
+    deleteContact.mutate()
+    navigate(`/contacts/`)
   }
 
   if (contact.isLoading) {
@@ -41,6 +49,9 @@ export default function EditContact() {
         submitLabel="Update Contact"
         onSubmit={handleSubmit}
       />
+      <form onSubmit={handleDelete} className="button">
+        <button className="button">Delete contact</button>
+      </form>
     </>
   )
 }
